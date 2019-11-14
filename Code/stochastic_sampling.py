@@ -1,17 +1,25 @@
-from histogram import histogram
+import histogram
 import random
 import sys
 
-f = open('sherlock_no_title_chapters.txt')
-book = "one fish two fish red fish blue fish"
-
 def random_selection(word_list):
     choice = random.choice(word_list)
-    return choice[0]
+    return choice
+
+def sample_by_frequency(histogram):
+    count = random.randint(1, sum(histogram.values()))
+
+    for key in histogram:
+        count -= histogram[key]
+        if count <= 0:
+            return key
+    return -1
 
 def main():
-    histo = histogram(book)
-    print(random_selection(histo))
+    book = 'sherlock_no_title_chapters.txt'
+    word_list = histogram.generate_word_list(book)
+    histo = histogram.histogram_dictionary(word_list)
+    print(sample_by_frequency(histo))
 
 if __name__== "__main__":
   main()
