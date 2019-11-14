@@ -2,23 +2,23 @@ import sys
 import random
 import string
 
-f = open('sherlock_no_title_chapters.txt')
-book = f.read()
-
-def histogram_dictionary(source_text):
-    source_text = source_text.lower()
+def generate_word_list(source_text):
+    book = open(source_text).read()
+    book = book.lower()
     for check in string.punctuation:
-        source_text = source_text.replace(check, "")
-        
-    source_text = source_text.replace('“', '')
-    source_text = source_text.replace('”', '')
-    source_text = source_text.replace('’', '')
-    source_text = source_text.replace('‘', '')
-    source_text = source_text.replace('—', ' ')    
-    source_list = source_text.split()
+        book = book.replace(check, "")
+    book = book.replace('“', '')
+    book = book.replace('”', '')
+    book = book.replace('’', '')
+    book = book.replace('‘', '')
+    book = book.replace('—', ' ')    
+    book = book.split()
 
+    return book
+
+def histogram_dictionary(word_list):
     histogram = {}
-    for word in source_list:
+    for word in word_list:
         if word not in histogram:
             histogram[word] = 1
         else:
@@ -55,7 +55,9 @@ def frequency(word, histogram):
     #         print(x[1])
 
 def main():
-    histo = histogram_dictionary(book)
+    text = 'sherlock_no_title_chapters.txt'
+    word_list = generate_word_list(text)
+    histo = histogram_dictionary(word_list)
     print(histo)
     print(unique_words(histo))
     print(frequency("skylight", histo))
