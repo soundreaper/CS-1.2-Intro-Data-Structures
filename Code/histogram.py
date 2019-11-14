@@ -25,34 +25,58 @@ def histogram_dictionary(word_list):
             histogram[word] += 1
     
     return histogram
-    
-    # dup_check = []
-    # word_count_list = []
 
-    # for x in source_list:
-    #     if x not in dup_check:
-    #         dup_check.append(x)
+def histogram_list(word_list):
+    histogram = []
+    hist = []
 
-    # for x in range(0, len(dup_check)):
-    #     word_freq = source_list.count(dup_check[x])
-    #     pair = [dup_check[x], word_freq]
-    #     word_count_list.append(pair)
+    for word in word_list:
+        if word not in histogram:
+            histogram.append(word)
     
-    # return(word_count_list)
+    for x in range(0, len(histogram)):
+        frequency = word_list.count(histogram[x])
+        pair = [histogram[x], frequency]
+        hist.append(pair)
+    
+    return hist
+
+def histogram_tuple(word_list):
+    histogram = []
+    hist = []
+
+    for word in word_list:
+        if word not in histogram:
+            histogram.append(word)
+    
+    for x in range(0, len(histogram)):
+        frequency = word_list.count(histogram[x])
+        pair = (histogram[x], frequency)
+        hist.append(pair)
+    
+    return hist
+
+def histogram_count(word_list):
+    hist = histogram_dictionary(word_list)
+    values = sorted(hist.values())
+    values_set = set(values)
+
+    count_hist = []
+
+    for val in values_set:
+        words = []
+        for key in hist:
+            if hist[key] == val:
+                words.append(key)
+        count_hist.append((val, words))
+    
+    return count_hist
 
 def unique_words(histogram):
     return len(histogram.keys())
-    # unique_word_count = 0
-    # for x in histogram:
-    #     unique_word_count += 1
-    
-    # print(unique_word_count)
 
 def frequency(word, histogram):
     return histogram[word]
-    # for x in histogram:
-    #     if word == x[0]:
-    #         print(x[1])
 
 def main():
     text = 'sherlock_no_title_chapters.txt'
