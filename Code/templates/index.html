@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TweetGen</title>
+</head>
+<body>
+
+<!-- The code below extends base.html with the base of our website and adds the search bar and 3 buttons for
+Search, trending, and Random. This is also contained inside another row and column so the search bar does not extend
+across the entire page. -->
+{% extends 'base.html' %}
+{% block sentence %}
+<div class="container text-center">
+    <h1>{{ generated }}</h1>
+</div>
+{% endblock %}
+</body>
+</html>

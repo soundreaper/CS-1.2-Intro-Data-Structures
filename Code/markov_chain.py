@@ -35,10 +35,9 @@ class MarkovChain:
 
         return string
 
-def main(number):
-    markov = MarkovChain('sherlock_no_title_chapters.txt')
-
-    print(markov.walk_through(number))
+def main(file, number):
+    markov = MarkovChain(file)
+    return markov.walk_through(number)
 
 if __name__ == '__main__':
-    main(10)
+    main('sherlock_no_title_chapters.txt', 10)
