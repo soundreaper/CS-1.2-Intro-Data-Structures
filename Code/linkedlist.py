@@ -32,6 +32,10 @@ class LinkedList(object):
     def __repr__(self):
         """Return a string representation of this linked list."""
         return 'LinkedList({!r})'.format(self.items())
+    
+    def __iter__(self):
+        """Returns an interable representation of this linked list"""
+        return iter([value for value in self.items()])
 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
@@ -100,7 +104,7 @@ class LinkedList(object):
         
         return n_node
 
-    def find(self, quality):
+    def find(self, quality, data):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         Best case runtime: O(1) if the first node is true for quality
@@ -112,7 +116,10 @@ class LinkedList(object):
 
         while node is not None:
             if quality(node.data):
-                return node.data
+                if data:
+                    return node.data
+                else:
+                    return node
             else:
                 node = node.next
         
@@ -149,6 +156,11 @@ class LinkedList(object):
                 p_node = p_node.next
             node = node.next
         raise ValueError('Item not found: {}'.format(item))
+
+    def replace(self, item, new_item):
+        """Replace an existing item with a new one"""
+        node = self.find(lambda x: x == item, False)
+        node.data = new_item
 
 def test_linked_list():
     ll = LinkedList()
