@@ -3,7 +3,7 @@ import random
 import string
 
 def generate_word_list(source_text):
-    book = open(source_text).read()
+    book = open(source_text, mode = 'r', encoding = 'utf-8').read()
     book = book.lower()
     for check in string.punctuation:
         book = book.replace(check, "")
