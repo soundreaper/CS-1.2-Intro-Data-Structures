@@ -8,6 +8,6 @@ app = Flask(__name__)
 def index():
     """Return homepage."""
     file = 'sherlock_no_title_chapters.txt'
-    generated = markov_chain.main(file, 10)
+    generated = markov_chain.main(file)
 
     return render_template("index.html", generated=generated)
